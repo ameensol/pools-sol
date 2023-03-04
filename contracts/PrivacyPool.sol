@@ -41,7 +41,7 @@ contract PrivacyPool is
     // double spend records
     mapping(bytes32 => bool) public nullifiers;
 
-    constructor(address poseidon, uint256 _denomination) IncrementalMerkleTree(poseidon) {
+    constructor(address poseidon, uint256 _denomination) IncrementalMerkleTree(poseidon) payable {
         denomination = _denomination;
     }
 
@@ -94,12 +94,25 @@ contract PrivacyPool is
 
         if (fee > 0) {
             unchecked {
-                payable(recipient).transfer(denomination - fee);
+                _safeTransferETH(recipient, denomination - fee);
             }
-            payable(relayer).transfer(fee);
+            _safeTransferETH(relayer, fee);
         } else {
-            payable(recipient).transfer(denomination);
+            _safeTransferETH(recipient, denomination);
         }
         return true;
+    }
+    
+    function _safeTransferETH(address to, uint256 amount) internal {
+        /// @solidity memory-safe-assembly
+        assembly {
+            // Transfer the ETH and check if it succeeded or not.
+            if iszero(call(gas(), to, amount, 0, 0, 0, 0)) {
+                // Store the function selector of `ETHTransferFailed()`.
+                mstore(0x00, 0xb12d13eb)
+                // Revert with (offset, size).
+                revert(0x1c, 0x04)
+            }
+        }
     }
 }
