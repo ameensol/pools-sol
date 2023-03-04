@@ -1,0 +1,10 @@
+node_modules
+*_verifier.sol
+build
+.env
+*.env
+.env.*
+backlog
+*.error
+*.log
+venv

@@ -1,0 +1,51 @@
+{
+    "name": "privacy-pools",
+    "main": "./lib/index.js",
+    "version": "0.1.1",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com/ameensol/privacy-pools.git"
+    },
+    "scripts": {
+        "prettier": "./node_modules/.bin/prettier -c \"./**/*.{js, sol}\"",
+        "prettier:js": "./node_modules/.bin/prettier -w ./**/*.js",
+        "prettier:solidity": "./node_modules/.bin/prettier -w contracts/**/*.sol",
+        "prettier:write": "./node_modules/.bin/prettier -w \"./**/*.{js, sol}\"",
+        "solhint": "./node_modules/.bin/solhint -f table contracts/**/*.sol",
+        "slither": "./venv/bin/slither --hardhat-cache-directory=./build/cache --hardhat-artifacts-directory=./build/artifacts ."
+    },
+    "license": "GPL-3.0",
+    "dependencies": {
+        "@ethersproject/bignumber": "^5.7.0",
+        "@ethersproject/hdnode": "^5.7.0",
+        "@ethersproject/keccak256": "^5.7.0",
+        "@ethersproject/random": "^5.7.0",
+        "@ethersproject/solidity": "^5.7.0",
+        "@ethersproject/wallet": "^5.7.0",
+        "@openzeppelin/contracts": "^4.7.3",
+        "bitset": "^5.1.1",
+        "circomlib": "^2.0.5",
+        "circomlibjs": "^0.1.7",
+        "ethers": "^5.7.1",
+        "fixed-merkle-tree": "^0.7.3",
+        "snarkjs": "^0.5.0"
+    },
+    "devDependencies": {
+        "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
+        "@nomicfoundation/hardhat-network-helpers": "^1.0.6",
+        "@nomiclabs/hardhat-ethers": "^2.1.1",
+        "chai": "^4.3.6",
+        "chalk": "4.1.2",
+        "dotenv": "^16.0.3",
+        "fs": "^0.0.1-security",
+        "hardhat": "^2.11.2",
+        "hardhat-gas-reporter": "^1.0.9",
+        "hardhat-storage-layout": "^0.1.7",
+        "mocha": "^10.0.0",
+        "prettier": "^2.7.1",
+        "prettier-plugin-solidity": "^1.0.0-beta.24",
+        "solhint": "^3.3.7",
+        "solhint-plugin-prettier": "^0.0.5",
+        "typescript": "^4.8.4"
+    }
+}
